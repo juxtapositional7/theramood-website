@@ -323,7 +323,7 @@ section { padding: clamp(4.5rem, 9vw, 7.5rem) 0; }
 .phone {
   position: relative;
   width: min(300px, 74vw);
-  aspect-ratio: 1080 / 2340;
+  aspect-ratio: 1080 / 2256;
   border-radius: 44px;
   background: #1d2733;
   padding: 9px;

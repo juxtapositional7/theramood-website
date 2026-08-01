@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contact — TheraMood</title>
+  <meta name="description" content="Get in touch with Jasmine, the creator of TheraMood — feedback, questions about the build, or collaboration ideas.">
+  <meta name="theme-color" content="#dceff8">
+  <link rel="icon" type="image/svg+xml" href="assets/logo.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <!-- ══════════ NAV ══════════ -->
+  <nav class="nav" id="nav">
+    <div class="container nav__inner">
+      <a href="index.html" class="brand" aria-label="TheraMood home">
+        <svg class="brand__mark" viewBox="0 0 64 64" aria-hidden="true">
+          <defs>
+            <linearGradient id="navGrad" x1="0" y1="0" x2="1" y2="1">
+              <stop offset="0" stop-color="#66A3DD"/>
+              <stop offset="0.55" stop-color="#8FB4E6"/>
+              <stop offset="1" stop-color="#F2A483"/>
+            </linearGradient>
+          </defs>
+          <rect x="3" y="3" width="58" height="58" rx="19" fill="url(#navGrad)"/>
+          <path d="M12 36h9l4-13 8 24 7-18 3.5 7H51" fill="none" stroke="#fff" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+          <circle cx="51" cy="36" r="3" fill="#fff"/>
+        </svg>
+        <span class="brand__name">Thera<span class="grad-text">Mood</span></span>
+      </a>
+
+      <div class="nav__links" id="navLinks">
+        <a href="index.html#why">Why</a>
+        <a href="index.html#how">How it works</a>
+        <a href="index.html#tour">App tour</a>
+        <a href="index.html#inside">Hardware</a>
+        <a href="contact.html" class="is-current">Contact</a>
+        <a href="index.html#reset" class="btn btn--primary btn--sm">Try a reset</a>
+      </div>
+
+      <button class="nav__burger" id="navBurger" aria-label="Toggle menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+
+  <main>
+
+    <!-- ══════════ CONTACT ══════════ -->
+    <section class="contact">
+      <div class="blob blob--1" aria-hidden="true"></div>
+      <div class="blob blob--2" aria-hidden="true"></div>
+
+      <div class="container contact__grid">
+        <div class="contact__copy" data-reveal>
+          <p class="eyebrow">Contact</p>
+          <h1 class="section-title">Say <span class="grad-text">hello</span> 👋</h1>
+          <p class="section-sub">
+            Whether it's feedback on the app, a question about the hardware,
+            or an idea worth exploring — I'd love to hear from you.
+          </p>
+          <ul class="contact__points">
+            <li><span>💬</span> Feedback on TheraMood</li>
+            <li><span>🔧</span> Questions about the build — hardware, firmware, or app</li>
+            <li><span>🤝</span> Collaboration &amp; ideas</li>
+          </ul>
+        </div>
+
+        <div class="contact__form-wrap" data-reveal style="--d:.12s">
+          <form id="contactForm" class="contact-form" novalidate>
+            <label class="field">
+              <span>Name</span>
+              <input type="text" name="name" id="cfName" placeholder="Your name" required maxlength="80" autocomplete="name">
+            </label>
+            <label class="field">
+              <span>Email</span>
+              <input type="email" name="email" id="cfEmail" placeholder="you@example.com" required maxlength="120" autocomplete="email">
+            </label>
+            <label class="field">
+              <span>Message</span>
+              <textarea name="message" id="cfMessage" rows="5" placeholder="What's on your mind?" required maxlength="2000"></textarea>
+            </label>
+            <p class="field-error" id="formError" hidden>Please fill in every field, with a valid email.</p>
+            <button class="btn btn--primary contact-form__submit" type="submit">Send message 🌊</button>
+          </form>
+
+          <div class="contact-success" id="contactSuccess" hidden>
+            <span class="contact-success__emoji">🌊</span>
+            <h3>Message sent!</h3>
+            <p>Thanks for reaching out — Jasmine will read it soon.</p>
+            <button class="btn btn--ghost" id="sendAnother">Send another</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ══════════ ADMIN INBOX (unlocks with admin key) ══════════ -->
+    <section class="inbox" id="inboxSection" hidden>
+      <div class="container">
+        <div class="inbox__head">
+          <h2 class="section-title">📥 Inbox <span class="inbox__count" id="inboxCount">0</span></h2>
+          <div class="inbox__actions">
+            <button class="btn btn--ghost btn--sm" id="inboxExport">Export JSON</button>
+            <button class="btn btn--ghost btn--sm" id="inboxClear">Clear all</button>
+            <button class="btn btn--primary btn--sm" id="inboxLock">Lock 🔒</button>
+          </div>
+        </div>
+        <p class="inbox__note">
+          Messages are stored in this browser on the device where they were submitted.
+        </p>
+        <div class="inbox__list" id="inboxList"></div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ══════════ FOOTER ══════════ -->
+  <footer class="footer">
+    <div class="container footer__inner">
+      <div class="footer__brand">
+        <a href="index.html" class="brand brand--footer">
+          <svg class="brand__mark" viewBox="0 0 64 64" aria-hidden="true">
+            <defs>
+              <linearGradient id="footGrad" x1="0" y1="0" x2="1" y2="1">
+                <stop offset="0" stop-color="#66A3DD"/>
+                <stop offset="0.55" stop-color="#8FB4E6"/>
+                <stop offset="1" stop-color="#F2A483"/>
+              </linearGradient>
+            </defs>
+            <rect x="3" y="3" width="58" height="58" rx="19" fill="url(#footGrad)"/>
+            <path d="M12 36h9l4-13 8 24 7-18 3.5 7H51" fill="none" stroke="#fff" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+            <circle cx="51" cy="36" r="3" fill="#fff"/>
+          </svg>
+          <span class="brand__name">Thera<span class="grad-text">Mood</span></span>
+        </a>
+        <p class="footer__slogan">Feel what your body knows.</p>
+      </div>
+
+      <nav class="footer__links" aria-label="Footer">
+        <a href="index.html#why">Why</a>
+        <a href="index.html#how">How it works</a>
+        <a href="index.html#tour">App tour</a>
+        <a href="index.html#inside">Hardware</a>
+        <a href="contact.html">Contact</a>
+      </nav>
+    </div>
+    <div class="container footer__base">
+      <p>Designed &amp; engineered by Jasmine Liu · TheraMood © <span id="year">2026</span></p>
+      <p class="footer__note">
+        Not a medical device — a companion for everyday emotional awareness.
+        <button class="admin-dot" id="adminDot" aria-label="Owner access">·</button>
+      </p>
+    </div>
+  </footer>
+
+  <!-- ══════════ ADMIN KEY MODAL ══════════ -->
+  <div class="admin-modal" id="adminModal" hidden>
+    <div class="admin-modal__card" id="adminCard" role="dialog" aria-modal="true" aria-labelledby="adminTitle">
+      <button class="admin-modal__close" id="adminClose" aria-label="Close">×</button>
+      <span class="admin-modal__emoji">🗝️</span>
+      <h3 id="adminTitle">Owner access</h3>
+      <p>Enter the admin key to view your messages.</p>
+      <form id="adminForm">
+        <input type="password" id="adminInput" placeholder="Admin key" autocomplete="off" aria-label="Admin key">
+        <button class="btn btn--primary" type="submit">Unlock</button>
+      </form>
+      <p class="admin-modal__error" id="adminError" hidden>That's not it — try again.</p>
+    </div>
+  </div>
+
+  <script src="js/main.js"></script>
+  <script src="js/contact.js"></script>
+</body>
+</html>

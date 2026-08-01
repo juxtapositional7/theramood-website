@@ -1,0 +1,453 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TheraMood — Feel what your body knows</title>
+  <meta name="description" content="TheraMood is a wearable wristband and companion app that predicts your emotional state from pulse and sleep data, then guides you back to calm with personalized recovery exercises.">
+  <meta name="theme-color" content="#dceff8">
+  <link rel="icon" type="image/svg+xml" href="assets/logo.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <!-- ══════════ NAV ══════════ -->
+  <nav class="nav" id="nav">
+    <div class="container nav__inner">
+      <a href="#top" class="brand" aria-label="TheraMood home">
+        <svg class="brand__mark" viewBox="0 0 64 64" aria-hidden="true">
+          <defs>
+            <linearGradient id="navGrad" x1="0" y1="0" x2="1" y2="1">
+              <stop offset="0" stop-color="#66A3DD"/>
+              <stop offset="0.55" stop-color="#8FB4E6"/>
+              <stop offset="1" stop-color="#F2A483"/>
+            </linearGradient>
+          </defs>
+          <rect x="3" y="3" width="58" height="58" rx="19" fill="url(#navGrad)"/>
+          <path d="M12 36h9l4-13 8 24 7-18 3.5 7H51" fill="none" stroke="#fff" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+          <circle cx="51" cy="36" r="3" fill="#fff"/>
+        </svg>
+        <span class="brand__name">Thera<span class="grad-text">Mood</span></span>
+      </a>
+
+      <div class="nav__links" id="navLinks">
+        <a href="#why">Why</a>
+        <a href="#how">How it works</a>
+        <a href="#tour">App tour</a>
+        <a href="#inside">Hardware</a>
+        <a href="#reset" class="btn btn--primary btn--sm">Try a reset</a>
+      </div>
+
+      <button class="nav__burger" id="navBurger" aria-label="Toggle menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- ══════════ HERO ══════════ -->
+  <header class="hero" id="top">
+    <div class="blob blob--1" aria-hidden="true"></div>
+    <div class="blob blob--2" aria-hidden="true"></div>
+    <div class="blob blob--3" aria-hidden="true"></div>
+
+    <div class="container hero__grid">
+      <div class="hero__copy">
+        <span class="chip" data-reveal>
+          <span class="chip__dot"></span> Wearable wristband + ML companion app
+        </span>
+        <h1 class="hero__title" data-reveal style="--d:.08s">
+          Feel what your <span class="grad-text">body knows.</span>
+        </h1>
+        <p class="hero__sub" data-reveal style="--d:.16s">
+          TheraMood reads your pulse and last night's sleep to predict how you feel today —
+          then guides you back to calm the moment stress, anxiety, or low mood appears.
+        </p>
+        <div class="hero__actions" data-reveal style="--d:.24s">
+          <a href="#tour" class="btn btn--primary">Explore the app</a>
+          <a href="#how" class="btn btn--ghost">How it works</a>
+        </div>
+        <div class="hero__scroll" data-reveal style="--d:.4s">
+          <span class="hero__scroll-ic">↓</span> Scroll to explore
+        </div>
+      </div>
+
+      <div class="hero__visual" id="heroVisual" data-reveal style="--d:.2s">
+        <div class="phone phone--hero" data-depth="12">
+          <div class="phone__screen">
+            <img src="assets/app_screenshots/Screenshot_20260731-181605.jpg" alt="TheraMood home screen showing a daily quote, predicted emotional state and live views" loading="eager">
+          </div>
+          <span class="phone__cam" aria-hidden="true"></span>
+        </div>
+
+        <div class="float-card float-card--bpm" data-depth="28">
+          <span class="float-card__emoji">❤️</span>
+          <div>
+            <strong>72 bpm</strong>
+            <small>calm &amp; steady</small>
+          </div>
+          <svg class="ecg" viewBox="0 0 120 32" aria-hidden="true">
+            <path d="M0 18h16l5-9 7 18 7-13 4 6h15l5-8 7 15 6-12 4 6h44" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </div>
+
+        <div class="float-card float-card--state" data-depth="20">
+          <span class="float-card__emoji">😌</span>
+          <div>
+            <strong>Predicted: Calm</strong>
+            <small>matches your vitals ✓</small>
+          </div>
+        </div>
+
+        <div class="float-card float-card--sleep" data-depth="34">
+          <span class="float-card__emoji">🌙</span>
+          <div>
+            <strong>7h 42m</strong>
+            <small>REM 22% · Deep 18%</small>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="marquee" aria-hidden="true">
+      <div class="marquee__track">
+        <span>Optical pulse sensing</span><i>✦</i>
+        <span>Sleep architecture</span><i>✦</i>
+        <span>REM &amp; deep sleep</span><i>✦</i>
+        <span>Heart-rate variability</span><i>✦</i>
+        <span>SpO₂</span><i>✦</i>
+        <span>Emotion prediction</span><i>✦</i>
+        <span>4-7-8 breathing</span><i>✦</i>
+        <span>Grounding resets</span><i>✦</i>
+        <span>Adaptive music</span><i>✦</i>
+        <span>Bluetooth LE</span><i>✦</i>
+        <span>Optical pulse sensing</span><i>✦</i>
+        <span>Sleep architecture</span><i>✦</i>
+        <span>REM &amp; deep sleep</span><i>✦</i>
+        <span>Heart-rate variability</span><i>✦</i>
+        <span>SpO₂</span><i>✦</i>
+        <span>Emotion prediction</span><i>✦</i>
+        <span>4-7-8 breathing</span><i>✦</i>
+        <span>Grounding resets</span><i>✦</i>
+        <span>Adaptive music</span><i>✦</i>
+        <span>Bluetooth LE</span><i>✦</i>
+      </div>
+    </div>
+  </header>
+
+  <main>
+
+    <!-- ══════════ WHY ══════════ -->
+    <section class="stats" id="why">
+      <div class="container">
+        <p class="eyebrow" data-reveal>Why TheraMood exists</p>
+        <h2 class="section-title" data-reveal style="--d:.06s">
+          Young minds are struggling.<br>Most of it stays <span class="grad-text">invisible.</span>
+        </h2>
+        <p class="section-sub" data-reveal style="--d:.12s">
+          Emotional distress hides in plain sight — in a racing pulse, a restless night, a shallow breath.
+          TheraMood turns those invisible signals into measurable, actionable feedback.
+        </p>
+
+        <div class="stats__grid">
+          <div class="stat-card" data-reveal>
+            <span class="stat-card__num"><span class="counter" data-target="11.6" data-decimals="1">0</span>%</span>
+            <p>of young adults ages 18–25 live with serious mental illness — the highest of any age group.</p>
+            <small>NIH</small>
+          </div>
+          <div class="stat-card" data-reveal style="--d:.1s">
+            <span class="stat-card__num">10–24</span>
+            <p>the ages for which suicide is the leading cause of death.</p>
+            <small>National Alliance on Mental Illness</small>
+          </div>
+          <div class="stat-card" data-reveal style="--d:.2s">
+            <span class="stat-card__num"><span class="counter" data-target="56">0</span>%</span>
+            <p>of people with major depression never receive treatment.</p>
+            <small>High Watch Recovery Center</small>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ══════════ HOW IT WORKS ══════════ -->
+    <section class="how" id="how">
+      <div class="container">
+        <p class="eyebrow" data-reveal>How it works</p>
+        <h2 class="section-title" data-reveal style="--d:.06s">
+          From heartbeat to <span class="grad-text">headway</span> — in three steps
+        </h2>
+
+        <div class="how__grid">
+          <article class="how-card" data-reveal>
+            <span class="how-card__step">01</span>
+            <span class="how-card__emoji">🌙</span>
+            <h3>Track the night</h3>
+            <p>
+              The wristband fuses an optical pulse sensor with overnight sleep-architecture
+              tracking — REM, deep sleep, and awakenings — while you rest.
+            </p>
+          </article>
+
+          <article class="how-card" data-reveal style="--d:.12s">
+            <span class="how-card__step">02</span>
+            <span class="how-card__emoji">📈</span>
+            <h3>Predict the day</h3>
+            <p>
+              An ML model correlates yesterday's sleep quality with today's emotional baseline
+              and intra-day pulse variability to predict your emotional state in real time.
+            </p>
+          </article>
+
+          <article class="how-card" data-reveal style="--d:.24s">
+            <span class="how-card__step">03</span>
+            <span class="how-card__emoji">🌿</span>
+            <h3>Recover in the moment</h3>
+            <p>
+              When a negative state emerges, the app responds with emotion-matched guidance —
+              breathing for anxiety, grounding for panic, restorative routines for low-mood fatigue.
+            </p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ══════════ APP TOUR ══════════ -->
+    <section class="tour-section" id="tour">
+      <div class="container">
+        <p class="eyebrow" data-reveal>App tour</p>
+        <h2 class="section-title" data-reveal style="--d:.06s">
+          A companion that <span class="grad-text">gets you</span>
+        </h2>
+        <p class="section-sub" data-reveal style="--d:.12s">
+          Tap through the real app — every screen below is a live screenshot from TheraMood.
+        </p>
+
+        <div class="tour" data-reveal style="--d:.18s">
+          <div class="tour__list" id="tourList" role="tablist" aria-label="App screens">
+            <button class="tour__item is-active" data-index="0" role="tab" aria-selected="true">
+              <span class="tour__emoji">🏠</span>
+              <span class="tour__text">
+                <strong>Home base</strong>
+                <small>Your day at a glance — quote of the day, predicted state, and views that match your mood.</small>
+              </span>
+              <i class="tour__progress" aria-hidden="true"></i>
+            </button>
+            <button class="tour__item" data-index="1" role="tab" aria-selected="false">
+              <span class="tour__emoji">😊</span>
+              <span class="tour__text">
+                <strong>Daily check-in</strong>
+                <small>Tap the moods that resonate, rate your energy, note one thing you're grateful for.</small>
+              </span>
+              <i class="tour__progress" aria-hidden="true"></i>
+            </button>
+            <button class="tour__item" data-index="2" role="tab" aria-selected="false">
+              <span class="tour__emoji">🧭</span>
+              <span class="tour__text">
+                <strong>Predicted state + live vitals</strong>
+                <small>Heart rate, HRV and SpO₂ stream in over Bluetooth — and back up every prediction.</small>
+              </span>
+              <i class="tour__progress" aria-hidden="true"></i>
+            </button>
+            <button class="tour__item" data-index="3" role="tab" aria-selected="false">
+              <span class="tour__emoji">🎵</span>
+              <span class="tour__text">
+                <strong>Adaptive music</strong>
+                <small>Generative, calm-first tracks tuned to your vibe and preferred genres.</small>
+              </span>
+              <i class="tour__progress" aria-hidden="true"></i>
+            </button>
+            <button class="tour__item" data-index="4" role="tab" aria-selected="false">
+              <span class="tour__emoji">🫁</span>
+              <span class="tour__text">
+                <strong>Guided exercises</strong>
+                <small>4-7-8 breathing and grounding resets, one tap away when tension rises.</small>
+              </span>
+              <i class="tour__progress" aria-hidden="true"></i>
+            </button>
+            <button class="tour__item" data-index="5" role="tab" aria-selected="false">
+              <span class="tour__emoji">🏆</span>
+              <span class="tour__text">
+                <strong>Insights &amp; growth</strong>
+                <small>Wellness scores, achievements and XP levels that make consistency feel good.</small>
+              </span>
+              <i class="tour__progress" aria-hidden="true"></i>
+            </button>
+            <button class="tour__item" data-index="6" role="tab" aria-selected="false">
+              <span class="tour__emoji">✨</span>
+              <span class="tour__text">
+                <strong>Made for you</strong>
+                <small>Music, videos &amp; recipes picked from your passions — optionally boosted with your own API key.</small>
+              </span>
+              <i class="tour__progress" aria-hidden="true"></i>
+            </button>
+          </div>
+
+          <div class="tour__stage">
+            <div class="phone phone--tour" data-tilt>
+              <div class="phone__screen" id="tourScreen">
+                <img class="tour-shot is-active" src="assets/app_screenshots/Screenshot_20260731-181605.jpg" alt="Home screen with daily quote and predicted emotional state">
+                <img class="tour-shot" src="assets/app_screenshots/Screenshot_20260731-181017.jpg" alt="Mood check-in screen with selectable emotions and energy level" loading="lazy">
+                <img class="tour-shot" src="assets/app_screenshots/Screenshot_20260731-181238.jpg" alt="Predicted state screen with live heart rate, HRV and SpO2 readings" loading="lazy">
+                <img class="tour-shot" src="assets/app_screenshots/Screenshot_20260731-181329.jpg" alt="Music player playing a generative calming track" loading="lazy">
+                <img class="tour-shot" src="assets/app_screenshots/Screenshot_20260731-181401.jpg" alt="Guided 4-7-8 breathing exercise screen" loading="lazy">
+                <img class="tour-shot" src="assets/app_screenshots/Screenshot_20260731-181355.jpg" alt="Insights screen with wellness score, achievements and XP level" loading="lazy">
+                <img class="tour-shot" src="assets/app_screenshots/Screenshot_20260731-181506.jpg" alt="Personalized recommendations screen with music playlists" loading="lazy">
+              </div>
+              <span class="phone__cam" aria-hidden="true"></span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ══════════ BREATHING DEMO ══════════ -->
+    <section class="breath" id="reset">
+      <div class="container breath__inner">
+        <p class="eyebrow eyebrow--light" data-reveal>Interactive demo</p>
+        <h2 class="section-title" data-reveal style="--d:.06s">Try a 60-second reset</h2>
+        <p class="section-sub section-sub--light" data-reveal style="--d:.12s">
+          This is the same 4-7-8 breathing exercise TheraMood suggests when it detects anxiety.
+          Follow the circle — in for 4, hold for 7, out for 8.
+        </p>
+
+        <div class="breath__stage" data-reveal style="--d:.18s">
+          <div class="breath__ripple" id="breathRipple" aria-hidden="true"></div>
+          <div class="breath__circle" id="breathCircle">
+            <span class="breath__count" id="breathCount">4</span>
+            <span class="breath__label" id="breathLabel">Ready?</span>
+          </div>
+        </div>
+
+        <p class="breath__round" id="breathRound" data-reveal style="--d:.22s">4 rounds · about a minute</p>
+
+        <div class="breath__actions" data-reveal style="--d:.26s">
+          <button class="btn btn--light" id="breathStart">Start breathing</button>
+        </div>
+        <p class="breath__note" data-reveal style="--d:.3s">
+          Stop if you feel lightheaded — breathe normally between rounds whenever you need to.
+        </p>
+      </div>
+    </section>
+
+    <!-- ══════════ HARDWARE ══════════ -->
+    <section class="hardware" id="inside">
+      <div class="container">
+        <p class="eyebrow" data-reveal>Inside the band</p>
+        <h2 class="section-title" data-reveal style="--d:.06s">
+          Engineered from the <span class="grad-text">wrist up</span>
+        </h2>
+        <p class="section-sub" data-reveal style="--d:.12s">
+          Every part of TheraMood — the sensors, the case, the firmware, the app — was designed and built by hand.
+        </p>
+
+        <div class="hw__grid">
+          <article class="hw-card" data-reveal>
+            <span class="hw-card__emoji">🧠</span>
+            <h3>ESP32-S3 Reverse TFT Feather</h3>
+            <p>The brain of the band — a Wi-Fi + BLE microcontroller with a built-in display.</p>
+          </article>
+          <article class="hw-card" data-reveal style="--d:.06s">
+            <span class="hw-card__emoji">🫀</span>
+            <h3>MAX30102 pulse sensor</h3>
+            <p>Optical heart-rate and SpO₂ sensing — reads pulse, HRV and blood oxygen from the wrist.</p>
+          </article>
+          <article class="hw-card" data-reveal style="--d:.12s">
+            <span class="hw-card__emoji">🌀</span>
+            <h3>LSM6DSOX 6-DoF IMU</h3>
+            <p>Precision motion sensing that maps sleep cycles — REM, deep sleep and awakenings.</p>
+          </article>
+          <article class="hw-card" data-reveal style="--d:.18s">
+            <span class="hw-card__emoji">🛠️</span>
+            <h3>3D-printed case</h3>
+            <p>Custom watch enclosure with a sliding-door mechanism for easy sensor access.</p>
+          </article>
+          <article class="hw-card" data-reveal style="--d:.24s">
+            <span class="hw-card__emoji">📡</span>
+            <h3>CircuitPython + Bluetooth</h3>
+            <p>Firmware streams live sensor data straight to the app — no cables, no friction.</p>
+          </article>
+          <article class="hw-card" data-reveal style="--d:.3s">
+            <span class="hw-card__emoji">💙</span>
+            <h3>Flutter + Firebase</h3>
+            <p>A cross-platform companion app built in Dart, with secure cloud sync via Google Firebase.</p>
+          </article>
+        </div>
+
+        <div class="personal" data-reveal>
+          <div class="personal__copy">
+            <h3>Personal by design 🌊</h3>
+            <p>
+              No two minds are alike, so no two TheraMoods look alike. Onboarding shapes your
+              backgrounds, your avatar and your recommendations — and the algorithm keeps
+              learning from every update you make.
+            </p>
+          </div>
+          <ul class="personal__chips">
+            <li>Custom backgrounds from onboarding</li>
+            <li>Avatar &amp; animation options</li>
+            <li>Genre-matched music</li>
+            <li>Daily + long-term achievements</li>
+            <li>Optional OpenAI API key for smarter picks</li>
+            <li>Next up: sleep-data ML expansion</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- ══════════ CTA ══════════ -->
+    <section class="cta">
+      <div class="container">
+        <div class="cta__panel" data-reveal>
+          <h2>Emotional self-awareness,<br><em>engineered.</em></h2>
+          <p>
+            TheraMood transforms emotional self-awareness from subjective guesswork into
+            measurable, real-time, evidence-based feedback.
+          </p>
+          <a href="#tour" class="btn btn--light">Take the app tour</a>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ══════════ FOOTER ══════════ -->
+  <footer class="footer">
+    <div class="container footer__inner">
+      <div class="footer__brand">
+        <a href="#top" class="brand brand--footer">
+          <svg class="brand__mark" viewBox="0 0 64 64" aria-hidden="true">
+            <defs>
+              <linearGradient id="footGrad" x1="0" y1="0" x2="1" y2="1">
+                <stop offset="0" stop-color="#66A3DD"/>
+                <stop offset="0.55" stop-color="#8FB4E6"/>
+                <stop offset="1" stop-color="#F2A483"/>
+              </linearGradient>
+            </defs>
+            <rect x="3" y="3" width="58" height="58" rx="19" fill="url(#footGrad)"/>
+            <path d="M12 36h9l4-13 8 24 7-18 3.5 7H51" fill="none" stroke="#fff" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+            <circle cx="51" cy="36" r="3" fill="#fff"/>
+          </svg>
+          <span class="brand__name">Thera<span class="grad-text">Mood</span></span>
+        </a>
+        <p class="footer__slogan">Feel what your body knows.</p>
+      </div>
+
+      <nav class="footer__links" aria-label="Footer">
+        <a href="#why">Why</a>
+        <a href="#how">How it works</a>
+        <a href="#tour">App tour</a>
+        <a href="#reset">Try a reset</a>
+        <a href="#inside">Hardware</a>
+      </nav>
+    </div>
+    <div class="container footer__base">
+      <p>Designed &amp; engineered by Jasmine Liu · TheraMood © <span id="year">2026</span></p>
+      <p class="footer__note">Not a medical device — a companion for everyday emotional awareness.</p>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+</body>
+</html>

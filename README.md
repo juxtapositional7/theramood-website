@@ -6,7 +6,14 @@ Marketing site for **TheraMood**, a wearable wristband + companion app that pred
 emotional state from pulse signals and sleep-quality data, then delivers personalized
 recovery guidance when stress, anxiety, or emotional dysregulation is detected.
 
-## Run it
+## 🌐 Live site
+
+**[https://juxtapositional7.github.io/theramood-website/](https://juxtapositional7.github.io/theramood-website/)**
+
+The site is hosted with **GitHub Pages** straight from this repo (branch `main`, root folder) —
+no build step needed. Every push to `main` republishes it automatically within a minute or two.
+
+## Run it locally
 
 No build step — it's a static site. Either:
 
@@ -27,6 +34,7 @@ css/style.css           — styles, animations, responsive rules
 js/main.js              — interactions (tour, breathing demo, counters, parallax)
 assets/logo.svg         — logo mark (also used as favicon)
 assets/app_screenshots/ — real screenshots from the TheraMood app
+assets/hardware/        — photos of the electronics and the 3D-printed case
 ```
 
 ## Highlights

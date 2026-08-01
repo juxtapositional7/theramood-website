@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Download — TheraMood</title>
+  <meta name="description" content="Get the TheraMood companion app for iOS and Android — pair it with your wristband and turn pulse and sleep into real-time emotional insight.">
+  <meta name="theme-color" content="#dceff8">
+  <link rel="icon" type="image/svg+xml" href="assets/logo.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <!-- ══════════ NAV ══════════ -->
+  <nav class="nav" id="nav">
+    <div class="container nav__inner">
+      <a href="index.html" class="brand" aria-label="TheraMood home">
+        <svg class="brand__mark" viewBox="0 0 64 64" aria-hidden="true">
+          <defs>
+            <linearGradient id="navGrad" x1="0" y1="0" x2="1" y2="1">
+              <stop offset="0" stop-color="#66A3DD"/>
+              <stop offset="0.55" stop-color="#8FB4E6"/>
+              <stop offset="1" stop-color="#F2A483"/>
+            </linearGradient>
+          </defs>
+          <rect x="3" y="3" width="58" height="58" rx="19" fill="url(#navGrad)"/>
+          <path d="M12 36h9l4-13 8 24 7-18 3.5 7H51" fill="none" stroke="#fff" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+          <circle cx="51" cy="36" r="3" fill="#fff"/>
+        </svg>
+        <span class="brand__name">Thera<span class="grad-text">Mood</span></span>
+      </a>
+
+      <div class="nav__links" id="navLinks">
+        <a href="index.html#why">Why</a>
+        <a href="index.html#how">How it works</a>
+        <a href="index.html#tour">App tour</a>
+        <a href="index.html#inside">Hardware</a>
+        <a href="contact.html">Contact</a>
+        <a href="download.html" class="btn btn--primary btn--sm">Get the app</a>
+      </div>
+
+      <button class="nav__burger" id="navBurger" aria-label="Toggle menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+
+  <main>
+
+    <!-- ══════════ DOWNLOAD HERO ══════════ -->
+    <section class="dl">
+      <div class="blob blob--1" aria-hidden="true"></div>
+      <div class="blob blob--2" aria-hidden="true"></div>
+
+      <div class="container dl__grid">
+        <div class="dl__copy">
+          <p class="eyebrow" data-reveal>Download</p>
+          <h1 class="section-title" data-reveal style="--d:.06s">
+            Take TheraMood <span class="grad-text">with you</span>
+          </h1>
+          <p class="section-sub" data-reveal style="--d:.12s">
+            The companion app lives on your phone, listens to your wristband over Bluetooth,
+            and meets you with the right reset at the right moment.
+          </p>
+
+          <div class="dl__badges" data-reveal style="--d:.18s">
+            <!-- ── PLACEHOLDER: real store links get filled in by the script
+                 at the bottom of this page once the app is published ── -->
+            <a class="store-badge" id="appStoreBadge" href="#" aria-label="Download on the App Store (link coming soon)">
+              <svg class="store-badge__icon" viewBox="0 0 384 512" aria-hidden="true">
+                <path fill="currentColor" d="M318.7 268.7c-.2-36.7 16.4-64.4 50-84.8-18.8-26.9-47.2-41.7-84.7-44.6-35.5-2.8-74.3 20.7-88.5 20.7-15 0-49.4-19.7-76.4-19.7C63.3 141.2 4 184.8 4 273.5q0 39.3 14.4 81.2c12.8 36.7 59 126.7 107.2 125.2 25.2-.6 43-17.9 75.8-17.9 31.8 0 48.3 17.9 76.4 17.9 48.6-.7 90.4-82.5 102.6-119.3-65.2-30.7-61.7-90-61.7-91.9zm-56.6-164.2c27.3-32.4 24.8-61.9 24-72.5-24.1 1.4-52 16.4-67.9 34.9-17.5 19.8-27.8 44.3-25.6 71.9 26.1 2 49.9-11.4 69.5-34.3z"/>
+              </svg>
+              <span class="store-badge__text"><small>Download on the</small><strong>App Store</strong></span>
+            </a>
+
+            <a class="store-badge" id="playBadge" href="#" aria-label="Get it on Google Play (link coming soon)">
+              <svg class="store-badge__icon" viewBox="0 0 44 50" aria-hidden="true">
+                <path d="M2 1 L21 25 L2 25 Z" fill="#00A0FF"/>
+                <path d="M2 1 L40 25 L21 25 Z" fill="#00E36C"/>
+                <path d="M2 49 L40 25 L21 25 Z" fill="#FF3A44"/>
+                <path d="M2 49 L21 25 L2 25 Z" fill="#FFD500"/>
+              </svg>
+              <span class="store-badge__text"><small>Get it on</small><strong>Google Play</strong></span>
+            </a>
+          </div>
+
+          <p class="dl__note" data-reveal style="--d:.24s">
+            🚧 The app is on its way to both stores — these buttons go live the moment it ships.
+          </p>
+
+          <ul class="personal__chips dl__chips" data-reveal style="--d:.3s">
+            <li>iOS &amp; Android</li>
+            <li>Bluetooth LE pairing</li>
+            <li>Works without the wristband too</li>
+            <li>Free</li>
+          </ul>
+        </div>
+
+        <div class="dl__visual" data-reveal style="--d:.2s">
+          <div class="phone phone--hero">
+            <div class="phone__screen">
+              <img src="assets/app_screenshots/Screenshot_20260731-181329.jpg" alt="TheraMood app playing a generative calming track called Weightless" loading="eager">
+            </div>
+            <span class="phone__cam" aria-hidden="true"></span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ══════════ 3 STEPS ══════════ -->
+    <section class="how">
+      <div class="container">
+        <p class="eyebrow" data-reveal>Getting started</p>
+        <h2 class="section-title" data-reveal style="--d:.06s">
+          Up and running in <span class="grad-text">minutes</span>
+        </h2>
+
+        <div class="how__grid">
+          <article class="how-card" data-reveal>
+            <span class="how-card__step">01</span>
+            <span class="how-card__emoji">📲</span>
+            <h3>Download the app</h3>
+            <p>Grab TheraMood from the App Store or Google Play and breeze through a
+               short onboarding that shapes the app around you.</p>
+          </article>
+          <article class="how-card" data-reveal style="--d:.12s">
+            <span class="how-card__step">02</span>
+            <span class="how-card__emoji">📡</span>
+            <h3>Pair your wristband</h3>
+            <p>One tap connects the band over Bluetooth — heart rate, HRV and SpO₂
+               start streaming in live.</p>
+          </article>
+          <article class="how-card" data-reveal style="--d:.24s">
+            <span class="how-card__step">03</span>
+            <span class="how-card__emoji">😌</span>
+            <h3>Check in &amp; let it learn</h3>
+            <p>Log how you feel, wear it overnight, and watch the predictions —
+               and the recovery guidance — get sharper every day.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ══════════ FOOTER ══════════ -->
+  <footer class="footer">
+    <div class="container footer__inner">
+      <div class="footer__brand">
+        <a href="index.html" class="brand brand--footer">
+          <svg class="brand__mark" viewBox="0 0 64 64" aria-hidden="true">
+            <defs>
+              <linearGradient id="footGrad" x1="0" y1="0" x2="1" y2="1">
+                <stop offset="0" stop-color="#66A3DD"/>
+                <stop offset="0.55" stop-color="#8FB4E6"/>
+                <stop offset="1" stop-color="#F2A483"/>
+              </linearGradient>
+            </defs>
+            <rect x="3" y="3" width="58" height="58" rx="19" fill="url(#footGrad)"/>
+            <path d="M12 36h9l4-13 8 24 7-18 3.5 7H51" fill="none" stroke="#fff" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+            <circle cx="51" cy="36" r="3" fill="#fff"/>
+          </svg>
+          <span class="brand__name">Thera<span class="grad-text">Mood</span></span>
+        </a>
+        <p class="footer__slogan">Feel what your body knows.</p>
+      </div>
+
+      <nav class="footer__links" aria-label="Footer">
+        <a href="index.html#why">Why</a>
+        <a href="index.html#how">How it works</a>
+        <a href="index.html#tour">App tour</a>
+        <a href="index.html#inside">Hardware</a>
+        <a href="download.html">Download</a>
+        <a href="contact.html">Contact</a>
+      </nav>
+    </div>
+    <div class="container footer__base">
+      <p>Designed &amp; engineered by Jasmine Liu · TheraMood © <span id="year">2026</span></p>
+      <p class="footer__note">Not a medical device — a companion for everyday emotional awareness.</p>
+    </div>
+  </footer>
+
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+  <script src="js/main.js"></script>
+  <script>
+    /* ─────────────────────────────────────────────
+       STORE LINKS — paste your real URLs here once
+       the app is published, e.g.:
+         APP_STORE_URL   = 'https://apps.apple.com/app/id1234567890'
+         GOOGLE_PLAY_URL = 'https://play.google.com/store/apps/details?id=com.theramood.app'
+       Leave them as '' to keep the "coming soon" toast.
+       ───────────────────────────────────────────── */
+    const APP_STORE_URL = '';
+    const GOOGLE_PLAY_URL = '';
+
+    (() => {
+      const toast = document.getElementById('toast');
+      let toastTimer = null;
+      const showToast = msg => {
+        toast.textContent = msg;
+        toast.classList.add('show');
+        clearTimeout(toastTimer);
+        toastTimer = setTimeout(() => toast.classList.remove('show'), 2600);
+      };
+
+      const wire = (id, url, storeName) => {
+        const badge = document.getElementById(id);
+        if (url) {
+          badge.href = url;
+          badge.target = '_blank';
+          badge.rel = 'noopener';
+        } else {
+          badge.addEventListener('click', e => {
+            e.preventDefault();
+            showToast(`Almost there — TheraMood hits the ${storeName} soon! 🌊`);
+          });
+        }
+      };
+
+      wire('appStoreBadge', APP_STORE_URL, 'App Store');
+      wire('playBadge', GOOGLE_PLAY_URL, 'Play Store');
+    })();
+  </script>
+</body>
+</html>

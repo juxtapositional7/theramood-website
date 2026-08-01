@@ -31,6 +31,7 @@ python -m http.server 8000
 ```
 index.html              — the main site (single page)
 contact.html            — contact page with hidden admin inbox
+download.html           — App Store / Google Play download page
 css/style.css           — styles, animations, responsive rules
 js/main.js              — interactions (tour, breathing demo, counters, parallax)
 js/contact.js           — contact form, admin key, message inbox
@@ -38,6 +39,20 @@ assets/logo.svg         — logo mark (also used as favicon)
 assets/app_screenshots/ — real screenshots from the TheraMood app
 assets/hardware/        — photos of the electronics and the 3D-printed case
 ```
+
+## Download page (placeholder store links)
+
+**download.html** shows App Store and Google Play badges. The real links don't
+exist yet, so both are placeholders: clicking one shows a friendly "coming soon"
+toast. When the app is published, open `download.html`, find the
+`STORE LINKS` comment near the bottom, and paste your URLs into:
+
+```js
+const APP_STORE_URL = '';   // e.g. https://apps.apple.com/app/id1234567890
+const GOOGLE_PLAY_URL = ''; // e.g. https://play.google.com/store/apps/details?id=com.theramood.app
+```
+
+The badges automatically become real links once a URL is filled in.
 
 ## Contact page & admin inbox
 

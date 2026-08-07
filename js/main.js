@@ -128,9 +128,12 @@
       armTimer();
     };
 
+    // an open in-phone sheet freezes the tour so the screen can't change underneath it
+    const sheetOpen = () => document.documentElement.classList.contains('app-sheet-open');
+
     const armTimer = () => {
       clearTimeout(autoTimer);
-      if (!reduceMotion) {
+      if (!reduceMotion && !sheetOpen()) {
         autoTimer = setTimeout(() => activate((current + 1) % tourItems.length), AUTO_MS);
       }
     };
@@ -140,9 +143,13 @@
       tourList.parentElement.classList.add('tour--paused');
     };
     const resume = () => {
+      if (sheetOpen()) return;
       tourList.parentElement.classList.remove('tour--paused');
       activate(current); // restarts progress bar + timer together
     };
+
+    document.addEventListener('tour:pause', pause);
+    document.addEventListener('tour:resume', resume);
 
     tourItems.forEach(item => {
       item.addEventListener('click', () => activate(parseInt(item.dataset.index, 10)));
@@ -159,6 +166,19 @@
       else pause();
     }, { threshold: 0.2 });
     tourVisibility.observe(tourList.parentElement);
+  }
+
+  /* ── Demo video (placeholder) ────────────── */
+  const demoPlay = $('#demoPlay');
+  const toast    = $('#toast');
+  if (demoPlay && toast) {
+    let toastTimer = null;
+    demoPlay.addEventListener('click', () => {
+      toast.textContent = 'Demo video coming soon — check back after launch! 🎬';
+      toast.classList.add('show');
+      clearTimeout(toastTimer);
+      toastTimer = setTimeout(() => toast.classList.remove('show'), 2600);
+    });
   }
 
   /* ── Phone tilt (tour) ───────────────────── */

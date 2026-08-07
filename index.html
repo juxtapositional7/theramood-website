@@ -222,7 +222,8 @@
           A companion that <span class="grad-text">gets you</span>
         </h2>
         <p class="section-sub" data-reveal style="--d:.12s">
-          Tap through the real app — every screen below is a live screenshot from TheraMood.
+          Tap through the real app — every screen below is a live screenshot from TheraMood,
+          and the controls on it actually respond.
         </p>
 
         <div class="tour" data-reveal style="--d:.18s">
@@ -307,7 +308,29 @@
               </div>
               <span class="phone__cam" aria-hidden="true"></span>
             </div>
+            <p class="phone-hint"><span class="phone-hint__dot" aria-hidden="true"></span> Tap the screen — the buttons work</p>
           </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ══════════ DEMO VIDEO ══════════ -->
+    <section class="demo" id="demo">
+      <div class="container">
+        <p class="eyebrow" data-reveal>See it in motion</p>
+        <h2 class="section-title" data-reveal style="--d:.06s">
+          Watch the <span class="grad-text">90-second demo</span>
+        </h2>
+        <p class="section-sub" data-reveal style="--d:.12s">
+          A quick walkthrough of check-ins, live vitals, sleep tracking and recovery — straight from the app.
+        </p>
+
+        <div class="demo__player" id="demoPlayer" data-reveal style="--d:.18s">
+          <button class="demo__play" id="demoPlay" aria-label="Play demo video">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>
+          </button>
+          <span class="demo__badge">Coming soon</span>
+          <span class="demo__duration">1:30</span>
         </div>
       </div>
     </section>
@@ -484,6 +507,9 @@
     </div>
   </footer>
 
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+
   <script src="js/main.js"></script>
+  <script src="js/app-demo.js"></script>
 </body>
 </html>

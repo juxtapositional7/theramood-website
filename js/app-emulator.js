@@ -49,6 +49,8 @@
   /* ── state (mirrors the app's stores, in memory only) ── */
   const S = {
     screen: 'home',
+    name: 'Friend',
+    tint: 0,                   // bumps on every tap, nudging the background
     moods: new Set(),
     energy: 0,
     gratitude: '',
@@ -88,7 +90,8 @@
       <div class="tm-top">
         <div class="tm-avatar">🌊</div>
         <div>
-          <div class="tm-top__name">Jasmine</div>
+          <input class="tm-name" data-name value="${esc(S.name)}" placeholder="Friend"
+                 aria-label="Your name" maxlength="18" spellcheck="false">
           <div class="tm-top__lvl">🌿 Lvl ${level()} · ${levelName()}</div>
         </div>
         <div class="tm-top__actions">
@@ -391,7 +394,7 @@
         <div class="tm-back" data-back role="button" tabindex="0" aria-label="Back">‹</div>
         <div>
           <div class="tm-h2">Recommended for you ✨</div>
-          <div class="tm-tiny">Handpicked for Jasmine from your setup</div>
+          <div class="tm-tiny">Handpicked for ${esc(S.name || 'Friend')} from your setup</div>
         </div>
         <div class="tm-top__actions" style="margin-left:auto">
           <button class="tm-icon-btn" data-act="key" aria-label="API key">🔑</button>
@@ -457,21 +460,67 @@
       <button data-tab="music"><i>🎵</i>Music</button>
       <button data-tab="insights"><i>📊</i>Insights</button>
       <button data-tab="breathing"><i>⚡</i>Exercises</button>
-    </nav>
-    <div class="tm__toast" id="tmToast" role="status"></div>`;
+    </nav>`;
 
   const views = {};
   root.querySelectorAll('.tm__view').forEach(v => (views[v.dataset.screen] = v));
   const nav = root.querySelector('#tmNav');
-  const toastEl = root.querySelector('#tmToast');
 
-  let toastTimer;
-  const toast = msg => {
-    toastEl.textContent = msg;
-    toastEl.classList.add('is-on');
-    clearTimeout(toastTimer);
-    toastTimer = setTimeout(() => toastEl.classList.remove('is-on'), 2600);
+  /* ── callout, rendered outside the phone so it isn't clipped ── */
+  const phoneEl = root.closest('.phone') || root.parentElement;
+  const host = root.closest('.tour__stage') || phoneEl.parentElement || document.body;
+  host.classList.add('tm-callout-host');
+
+  const callout = document.createElement('div');
+  callout.className = 'tm-callout';
+  callout.setAttribute('role', 'status');
+  host.appendChild(callout);
+
+  let anchorEl = null, calloutTimer;
+
+  const hideCallout = () => callout.classList.remove('is-on');
+
+  const toast = (msg, el = anchorEl) => {
+    callout.innerHTML = msg;
+    callout.style.visibility = 'hidden';
+    callout.classList.add('is-on');       // measure at full size
+
+    const hr = host.getBoundingClientRect();
+    const pr = phoneEl.getBoundingClientRect();
+    const br = (el && el.isConnected) ? el.getBoundingClientRect() : pr;
+    const cw = callout.offsetWidth, ch = callout.offsetHeight;
+    const gap = 16;
+
+    let side = 'right';
+    if (pr.right + gap + cw > window.innerWidth - 8) side = 'left';
+    if (side === 'left' && pr.left - gap - cw < 8) side = 'below';
+
+    let left, top;
+    if (side === 'below') {
+      left = pr.left - hr.left + (pr.width - cw) / 2;
+      top = pr.bottom - hr.top + gap;
+    } else {
+      left = side === 'right' ? pr.right - hr.left + gap : pr.left - hr.left - cw - gap;
+      top = br.top + br.height / 2 - hr.top - ch / 2;
+      // keep it alongside the phone rather than drifting off its ends
+      top = Math.max(pr.top - hr.top - 12, Math.min(pr.bottom - hr.top - ch + 12, top));
+    }
+
+    callout.dataset.side = side;
+    callout.style.left = Math.round(left) + 'px';
+    callout.style.top = Math.round(top) + 'px';
+    if (side !== 'below') {
+      const y = br.top + br.height / 2 - hr.top - top;
+      callout.style.setProperty('--arrow-y', Math.max(16, Math.min(ch - 16, y)) + 'px');
+    }
+    callout.style.visibility = '';
+
+    clearTimeout(calloutTimer);
+    calloutTimer = setTimeout(hideCallout, 3400);
   };
+
+  /* it lives in page flow, so it scrolls with the phone — only resize invalidates it */
+  addEventListener('resize', hideCallout);
 
   const paint = key => {
     views[key].innerHTML = V[key]();
@@ -558,9 +607,25 @@
   }
 
   /* ── interactions ─────────────────────────── */
+  /* every tap nudges the gradient a few degrees around its base hues */
+  const applyTint = () => {
+    const d = Math.sin(S.tint * 0.8) * 13;
+    root.style.setProperty('--bg-top', `hsl(${193 + d} 55% ${89 + Math.cos(S.tint * .6) * 2}%)`);
+    root.style.setProperty('--bg-mid', `hsl(${165 + d * 0.6} 30% 92%)`);
+    root.style.setProperty('--bg-bot', `hsl(${21 + d * 0.9} 79% ${91 + Math.sin(S.tint * .5) * 2}%)`);
+  };
+
   root.addEventListener('click', e => {
     const t = e.target;
     const hit = sel => t.closest(sel);
+
+    /* anchor callouts to whatever was tapped, and shift the background */
+    const tapped = t.closest('button, [role="button"], [data-act], [data-go], [data-fav], [data-back]');
+    if (tapped && !t.closest('[data-name]')) {
+      anchorEl = tapped;
+      S.tint++;
+      applyTint();
+    }
 
     const goEl = hit('[data-go]');
     if (goEl) return show(goEl.dataset.go);
@@ -611,7 +676,7 @@
         S.track = (S.track + 1) % TRACKS.length; S.pos = 0; return paint('music');
       case 'prev':
         S.track = (S.track - 1 + TRACKS.length) % TRACKS.length; S.pos = 0; return paint('music');
-      case 'repeat': return toast('Looping this seed — the usual pick for falling asleep.');
+      case 'repeat': return toast('<strong>↻ Loop</strong>Loops this seed indefinitely — the usual choice for falling asleep to.');
       case 'fav': case 'like': {
         const title = TRACKS[S.track].title;
         S.favs.has(title) ? S.favs.delete(title) : S.favs.add(title);
@@ -620,8 +685,8 @@
       case 'rate':
         if (!S.rated) { S.rated = true; bump('rate'); toast('Rated. That is the strongest signal the picker gets.'); }
         return paint('music');
-      case 'engine': return toast('Generated in real time — the waveform never repeats.');
-      case 'share':  return toast('Shares the seed so a friend can regenerate this track.');
+      case 'engine': return toast('<strong>◉ Generated, not streamed</strong>Built in real time from your current state, which is why the waveform never repeats.');
+      case 'share':  return toast('<strong>↗ Share</strong>Exports the seed that produced this piece so a friend can regenerate the same one.');
       case 'breath':
         S.breathOn ? stopBreath() : startBreath();
         return paint('breathing');
@@ -643,11 +708,11 @@
         S.nights = [];
         toast('History cleared. Sleep data never leaves your phone.');
         return paint('sleep');
-      case 'bt':       return toast('Pairing over Bluetooth LE… heart rate, HRV and SpO₂ stream in.');
-      case 'settings': return toast('Theme, notifications, pairing and privacy live here.');
-      case 'seemore':  return toast('Full trace, resting rate and your 7-day average — in the app.');
-      case 'key':      return toast('Stored on-device and used only for your own requests.');
-      case 'all-ach':  return toast('Dozens more across streaks, breathing, sleep and reflection.');
+      case 'bt':       return toast('<strong>📡 Pairing…</strong>Bluetooth LE connects the band — heart rate, HRV and SpO₂ start streaming in seconds.');
+      case 'settings': return toast('<strong>⚙️ Settings</strong>Theme, notification timing, sensor pairing and privacy controls.');
+      case 'seemore':  return toast('<strong>📈 Heart-rate history</strong>The full trace, your resting rate and how today compares with your 7-day average.');
+      case 'key':      return toast('<strong>🔑 Your own key</strong>Stored on-device and used only for your own requests. The local picks never call out.');
+      case 'all-ach':  return toast('<strong>🏆 All achievements</strong>Dozens more across daily streaks, breathing, sleep and reflection.');
     }
   });
 
@@ -669,9 +734,17 @@
     document.addEventListener('pointerup', up);
   });
 
+  /* typed fields update state without repainting, so focus and caret survive */
   root.addEventListener('input', e => {
     if (e.target.matches('[data-gratitude]')) S.gratitude = e.target.value;
+    if (e.target.matches('[data-name]')) S.name = e.target.value;
   });
+  root.addEventListener('blur', e => {
+    if (e.target.matches('[data-name]') && !e.target.value.trim()) {
+      S.name = 'Friend';
+      e.target.value = 'Friend';
+    }
+  }, true);
 
   root.addEventListener('keydown', e => {
     if ((e.key === 'Enter' || e.key === ' ') && e.target.matches('[data-go],[data-back],[data-fav]')) {

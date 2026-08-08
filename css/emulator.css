@@ -4,6 +4,11 @@
    (1080/2340 = .4615, and 390/844 = .462 — near-identical aspect).
    ═══════════════════════════════════════════════ */
 
+/* registering these lets the gradient ease between tints instead of snapping */
+@property --bg-top { syntax: '<color>'; inherits: true; initial-value: #d3ebf4; }
+@property --bg-mid { syntax: '<color>'; inherits: true; initial-value: #e6f2ef; }
+@property --bg-bot { syntax: '<color>'; inherits: true; initial-value: #fbe1d4; }
+
 .tm {
   --bg-top: #d3ebf4;
   --bg-mid: #e6f2ef;
@@ -31,6 +36,7 @@
   font-family: Inter, system-ui, sans-serif;
   color: var(--ink);
   background: linear-gradient(180deg, var(--bg-top) 0%, var(--bg-mid) 42%, var(--bg-bot) 100%);
+  transition: --bg-top .7s ease, --bg-mid .7s ease, --bg-bot .7s ease;
   -webkit-tap-highlight-color: transparent;
 }
 
@@ -449,24 +455,70 @@
 .tm__nav button.is-on { color: var(--blue-d); }
 .tm__nav.is-hidden { display: none; }
 
-/* ── toast ───────────────────────────────── */
-.tm__toast {
+/* ── callout ─────────────────────────────── */
+/* lives OUTSIDE .phone__screen so it isn't clipped, and is positioned
+   in JS next to whichever control was tapped */
+.tm-callout-host { position: relative; }
+
+.tm-callout {
   position: absolute;
-  left: 16px; right: 16px; bottom: 84px;
-  z-index: 5;
+  z-index: 20;
+  width: 212px;
   padding: 13px 15px;
   border-radius: 16px;
-  background: rgba(24, 52, 78, .94);
+  background: rgba(24, 52, 78, .96);
   color: #eef6fb;
   font-size: 13px;
-  font-weight: 600;
-  line-height: 1.4;
+  font-weight: 500;
+  line-height: 1.45;
+  box-shadow: 0 18px 36px -14px rgba(20, 44, 68, .85);
   opacity: 0;
-  transform: translateY(14px);
+  transform: scale(.94);
   pointer-events: none;
-  transition: opacity .3s ease, transform .3s ease;
+  transition: opacity .24s ease, transform .3s cubic-bezier(.2, .8, .2, 1);
 }
-.tm__toast.is-on { opacity: 1; transform: none; }
+.tm-callout.is-on { opacity: 1; transform: none; }
+.tm-callout strong { display: block; font-family: Sora, sans-serif; font-size: 13.5px; font-weight: 700; margin-bottom: 3px; }
+
+/* arrow aimed back at the control */
+.tm-callout::after {
+  content: '';
+  position: absolute;
+  width: 12px; height: 12px;
+  background: inherit;
+  transform: rotate(45deg);
+}
+.tm-callout[data-side="right"]::after { left: -5px;  top: var(--arrow-y, 50%); margin-top: -6px; }
+.tm-callout[data-side="left"]::after  { right: -5px; top: var(--arrow-y, 50%); margin-top: -6px; }
+.tm-callout[data-side="below"]::after { top: -5px;   left: 50%; margin-left: -6px; }
+
+@media (prefers-reduced-motion: reduce) {
+  .tm-callout { transition: opacity .2s ease; transform: none; }
+}
+
+/* ── editable name ───────────────────────── */
+.tm-name {
+  font-family: Sora, sans-serif;
+  font-size: 21px;
+  font-weight: 800;
+  line-height: 1.15;
+  color: var(--ink);
+  width: 145px;
+  padding: 0 2px 2px;
+  background: transparent;
+  border: none;
+  border-bottom: 1.5px dashed rgba(91, 147, 201, .45);
+  cursor: text;
+  transition: border-color .2s ease, background-color .2s ease;
+}
+.tm-name::placeholder { color: var(--ink-3); }
+.tm-name:hover { border-bottom-color: rgba(91, 147, 201, .8); }
+.tm-name:focus {
+  outline: none;
+  border-bottom-color: var(--blue-d);
+  background: rgba(255, 255, 255, .55);
+  border-radius: 5px 5px 0 0;
+}
 
 /* caption + tour tweaks when the live app is running */
 .tour--live .tour__item.is-active .tour__progress::after { animation: none; }
